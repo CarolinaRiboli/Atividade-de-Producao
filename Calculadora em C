@@ -1,1 +1,117 @@
+// usuário no GitHub: CarolinaRiboli
 
+/*
+Calculadora em linguagem C. Executa operações matemáticas com até dois
+operandos. Dentre as disponíveis estão: soma, subtração, divisão,
+multiplicação, radiciação(raiz quadrada) e potenciação.
+*/
+
+#include <math.h>
+#include <stdio.h>
+
+int main(void) {
+
+  printf("Atividade de Produção - Algoritmos e Programação\n\n");
+  printf("Carolina Artifon Riboli\nAnálise e Desenvolvimento de "
+         "Sistemas\nUniversidade La Salle\nn° de matrícula: 202220461\n\n");
+
+  float operando1, operando2, resultado;
+  char operador;
+
+  printf("───────⊱ Calculadora ⊰───────\n\n");
+
+  /* solicita que o usuário selecione pelo operador uma das operações
+   * disponíveis */
+  printf("Escolha uma operação: \n");
+  printf("▸ Soma: '+'\n");
+  printf("▸ Subtração: '-'\n");
+  printf("▸ Divisão: '/'\n");
+  printf("▸ Multiplicação: '*'\n");
+  printf("▸ Raiz Quadrada: 'r'\n");
+  printf("▸ Potenciação: '^'\n\n");
+  scanf("%c", &operador);
+
+  /* compara o operador escolhido pelo usuário aos especificados nos comandos
+   * case */
+  switch (operador) {
+
+  case '+':
+    printf("\nVocê escolheu a operação 'soma'\n");
+    printf("Primeiro valor: ");
+    scanf("%f", &operando1);
+    printf("Segundo valor: ");
+    scanf("%f", &operando2);
+    resultado = operando1 + operando2;
+    // o número antes do f limita o número de casas decimais
+    printf("%.2f + %.2f = %.2f", operando1, operando2, resultado);
+    // especifica a última linha de código a ser executada dentro da condição.
+    break;
+
+  case '-':
+    printf("\nVocê escolheu a operação 'subtração'\n");
+    printf("Primeiro valor: ");
+    scanf("%f", &operando1);
+    printf("Segundo valor: ");
+    scanf("%f", &operando2);
+    resultado = operando1 - operando2;
+    printf("%.2f - %.2f = %.2f", operando1, operando2, resultado);
+    break;
+
+  case '/':
+    printf("\nVocê escolheu a operação 'divisão'\n");
+    printf("Primeiro valor: ");
+    scanf("%f", &operando1);
+    printf("Segundo valor: ");
+    scanf("%f", &operando2);
+    // não existe a divisão de um número por 0
+    if (operando2 == 0) {
+      printf("O divisor não pode ser 0. Escolha outro: ");
+      scanf("%f", &operando2);
+    }
+    resultado = operando1 / operando2;
+    printf("%.2f / %.2f = %.2f", operando1, operando2, resultado);
+    break;
+
+  case '*':
+    printf("\nVocê escolheu a operação 'multiplicação'\n");
+    printf("Primeiro valor: ");
+    scanf("%f", &operando1);
+    printf("Segundo valor: ");
+    scanf("%f", &operando2);
+    resultado = operando1 * operando2;
+    printf("%.2f * %.2f = %.2f", operando1, operando2, resultado);
+    break;
+
+  case 'r':
+    printf("\nVocê escolheu a operação 'raiz quadrada'\n");
+    printf("Valor: ");
+    scanf("%f", &operando1);
+    /* caso o valor digitado seja negativo, será pedido ao usuário um número
+     * positivo */
+    if (operando1 < 0) {
+      printf("Não é possível extrair a raiz quadrada de um número negativo. "
+             "Digite um número maior ou igual a zero: ");
+      scanf("%f", &operando1);
+    }
+    // a função pow(operando1, (1/2)) também retornaria a raiz quadrada
+    resultado = sqrt(operando1);
+    printf("√%.2f = %.2f", operando1, resultado);
+    break;
+
+  case '^':
+    printf("\nVocê escolheu a operação 'potenciação'\n");
+    printf("Primeiro valor: ");
+    scanf("%f", &operando1);
+    printf("Expoente: ");
+    scanf("%f", &operando2);
+    resultado = pow(operando1, operando2);
+    printf("%.2f ^ %.2f = %.2f", operando1, operando2, resultado);
+    break;
+
+    /* caso o valor do switch não seja igual a um dos valores contidos nos
+     * cases, o default será executado */
+  default:
+    printf("\nOperador inválido.");
+  }
+  return 0;
+}
